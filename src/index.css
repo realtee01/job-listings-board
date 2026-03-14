@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: Smooth transitions for hover states */
+@layer base {
+  button {
+    @apply transition-all duration-300;
+  }
+}
+
+/* Ensure the body takes the full height and uses our theme background */
+body {
+  min-height: 100vh;
+  margin: 0;
+}
