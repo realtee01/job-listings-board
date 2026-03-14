@@ -5,11 +5,18 @@ export default {
     "./src/**/*.{js,jsx}",
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        display: ['"Playfair Display"', 'Georgia', 'serif'],
-        body:    ['Outfit', 'sans-serif'],
-        sans:    ['Outfit', 'sans-serif'],
+  extend: {
+    colors: {
+      espresso: '#1C1008',
+      terra: '#C4622D',
+      'terra-light': '#E8855A',
+      'amber-light': '#F2BC6A',
+      'sand-light': '#E0D4C4',
+      cream: '#FAF7F2',
+    }
+  }
+}
+
       },
       colors: {
         cream:      '#FAF7F2',
