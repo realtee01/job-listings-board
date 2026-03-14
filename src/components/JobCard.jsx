@@ -6,7 +6,8 @@ const JobCard = ({ job, onTagClick }) => {
     <div className={`bg-white p-8 lg:p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 relative mt-8 lg:mt-0 flex flex-col lg:flex-row lg:items-center justify-between border-l-[5px] ${job.featured ? 'border-terra' : 'border-transparent'}`}>
       <div className="flex flex-col lg:flex-row lg:items-center gap-6">
         <div className="absolute -top-6 left-8 lg:static w-12 h-12 lg:w-20 lg:h-20 bg-espresso rounded-xl flex items-center justify-center shadow-md overflow-hidden">
-          <img src={job.logo} alt="" className="w-2/3 h-2/3 object-contain" />
+          <img src={`https://api.dicebear.com/7.x/initials/svg?seed=${job.company}`} alt="" className="w-full h-full object-cover" />
+
         </div>
         <div>
           <div className="flex items-center gap-2 mb-2">
