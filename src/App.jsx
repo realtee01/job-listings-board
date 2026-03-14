@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import JobCard from './components/JobCard'
 import FilterBar from './components/FilterBar'
+import Header from './components/Header' // 1. Added this import
 
 const API_URL = 'https://jobs-api-l3e2.onrender.com/api/jobs'
 
@@ -39,19 +40,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-cream font-body">
-      <header className="bg-espresso h-[420px] relative overflow-hidden flex items-end pb-24">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-12 w-full z-10">
-          <p className="font-bold text-amber-light uppercase tracking-[2px] text-[11px] mb-6">247 new roles this week</p>
-          <h1 className="font-display text-5xl lg:text-7xl font-black text-cream leading-[0.95]">
-            Find your next <br /> <span className="italic text-terra-light">great role.</span>
-          </h1>
-        </div>
-        <div className="absolute bottom-0 left-0 w-full h-[60px]">
-          <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className="w-full h-full fill-cream">
-            <path d="M0 60 Q720 0 1440 60 L1440 60 L0 60 Z" />
-          </svg>
-        </div>
-      </header>
+      {/* 2. Replaced the old <header> block with our new component */}
+      {/* Passing visibleJobs.length makes the "Open Roles" number dynamic! */}
+      <Header jobCount={visibleJobs.length} />
 
       <main className="max-w-[1200px] mx-auto px-6 lg:px-12 pb-24">
         <FilterBar 
@@ -59,9 +50,20 @@ function App() {
           onRemove={(t) => setFilters(filters.filter(f => f !== t))} 
           onClear={() => setFilters([])} 
         />
-        <div className="flex flex-col gap-6 mt-12">
+        
+        {/* Section Meta to show the count above the list */}
+        <div className="flex items-center justify-between mt-12 mb-6">
+           <h2 className="font-display text-2xl text-brown font-bold">Open Positions</h2>
+           <span className="text-sm text-brown-light">
+             Showing <strong className="text-terra">{visibleJobs.length}</strong> roles
+           </span>
+        </div>
+
+        <div className="flex flex-col gap-6">
           {isLoading ? (
             <div className="text-center py-20 font-display text-brown text-2xl animate-pulse">Loading...</div>
+          ) : error ? (
+            <div className="text-center py-20 text-terra font-bold">{error}</div>
           ) : (
             visibleJobs.map(job => <JobCard key={job.id} job={job} onTagClick={handleTagClick} />)
           )}
@@ -72,3 +74,4 @@ function App() {
 }
 
 export default App
+
